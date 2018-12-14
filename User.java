@@ -8,21 +8,21 @@ public class User {
 	private String type;
 	private String loginId;
 	private String password;
+	private int score;
 	
-	public List<User> getUser() {
-		return user;
+	public int getScore() {
+		return score;
 	}
-	public void setUser(List<User> user) {
-		this.user = user;
+	public void setScore(int score) {
+		this.score = score;
 	}
-	List<User> user=new ArrayList();
-	
+
 	public User(String name,String type,String loginId,String password) {
 		this.name=name;
 		this.type=type;
 		this.loginId=loginId;
 		this.password=password;
-		System.out.println("User "+name+" created");
+		//System.out.println("User "+name+" created");
 	}
 	public String getName() {
 		return name;
