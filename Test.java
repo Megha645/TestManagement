@@ -10,12 +10,12 @@ public class Test {
 	
 	
 	public void addQuestions(Test test,Questions ques,List<Answer> allAnswer) {
-		if(test.getQuestions()==null) {
-			test.setQuestions(new ArrayList<>());
+		if(getQuestions()==null) {
+			setQuestions(new ArrayList<>());
 		}
-		int quesNum=test.getQuestions().size()+1;
-		Questions questions=new Questions(quesNum,ques.getQuestion(),allAnswer);
-		test.getQuestions().add(questions);
+		int quesNum=getQuestions().size()+1;
+		ques.setQuestionNumber(quesNum);
+		getQuestions().add(ques);
 	}
 	
 
