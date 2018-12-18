@@ -22,47 +22,33 @@ public class TestManager {
 	}
 	
 	public void assignTest(User user,Test test) {
-	
-		
-		Answer ans1=new Answer("ans2");
-		Answer ans2=new Answer("ans2");
-		Answer ans3=new Answer("ans2");
-		
-		
-		List<Answer> userAns=new ArrayList<>();
-		userAns.add(ans1);
-		userAns.add(ans2);
-		userAns.add(ans3);
-		
-		
-		List<Questions> options=new ArrayList<>();
-		options=test.getQuestions();
-	
-		TestManager tm=new TestManager();
-		int score=tm.ExecuteTest(user,options,userAns);
-		//System.out.println("Total score for "+user.getName()+" is"+score);
+		List<Questions> answers=new ArrayList<>();
+		answers=test.getQuestions();
+		int score=executeTest(user,answers);
+		System.out.println("Total score for "+user.getName()+" is "+score);
 	}
 	
-	public int ExecuteTest(User user,List<Questions> options,List<Answer> userAns) {
-		Answer correctAns=null;
-		 List<Answer> correctAnswer=new ArrayList<>();
-		int totalScore=0;
-			for (Questions ques : options) {
-				List<Answer> answers=ques.getAllAnswers();
-				for (Answer answer : answers) {
-					if(answer.getIsCorrect()==true)
-					{
-						 correctAns = answer;
-						 correctAnswer.add(correctAns);
-					}
-						 
-				}
-				
-			}
-			for (Answer answer : correctAnswer) {
-				System.out.println("Correct answers from questions "+answer.getAnswer());
-			}
+	public int executeTest(User user,List<Questions> questions) {
+		Answer ans1=new Answer("ans1");
+		Answer ans2=new Answer("ans1");
+		Answer ans3=new Answer("ans3");
 		
+		List<Answer> userAnswer=new ArrayList<>();
+		userAnswer.add(ans1);
+		userAnswer.add(ans2);
+		userAnswer.add(ans3);
+		
+		
+		int totalScore=0;
+		for(int i=0; i<questions.size();i++) {
+			List<Answer> answers=questions.get(i).getAllAnswers();
+			for(int j=0;j<answers.size();j++)
+			{
+				if(answers.get(j).getIsCorrect()==true && answers.get(j).getAnswer().equals(userAnswer.get(i).getAnswer())) {
+					totalScore++;
+				}
+			}
+		}
 		user.setScore(totalScore);
 		return user.getScore();
 	}
